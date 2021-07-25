@@ -16,6 +16,8 @@ jobs:
       NAME: ${{ secrets.DOCKER_NAME }}
     steps:
       - uses: actions/checkout@v2
+      - name: Test
+        run: echo $LOGIN/$NAME:latest
       - name: Build image
         run: docker build -t $LOGIN/$NAME:latest ./project
       - name: Docker login
