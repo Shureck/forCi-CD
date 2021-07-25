@@ -26,6 +26,5 @@ jobs:
         run: |
           sudo apt-get install sshpass
           sshpass -p ${{ secrets.VIRTUAL_PASS }} ssh ${{ secrets.VIRTUAL_LOGIN }}@${{ secrets.VIRTUAL_IP }}
-          ls
           mkdir forCiCd
         
