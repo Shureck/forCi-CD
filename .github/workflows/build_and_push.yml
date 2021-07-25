@@ -22,18 +22,18 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
       - name: Push image
         run: docker push $LOGIN/$NAME:latest
-#   job2:
-#     name: Publish
-#     needs: job1
-#     runs-on: ubuntu-latest
-#     steps:
-#         - name: Run sshpass commands
-#           uses: matheusvanzan/sshpass-action@v2
-#           with:
-#             host: ${{ secrets.VIRTUAL_IP }}
-#             user: ${{ secrets.VIRTUAL_LOGIN }}
-#             pass: ${{ secrets.VIRTUAL_PASS }}
-#             run: |
-#               cd forCiCD
-#               docker-compose down --rmi all
-#               docker-compose up -d
+  job2:
+    name: Publish
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+        - name: Run sshpass commands
+          uses: matheusvanzan/sshpass-action@v2
+          with:
+            host: ${{ secrets.VIRTUAL_IP }}
+            user: ${{ secrets.VIRTUAL_LOGIN }}
+            pass: ${{ secrets.VIRTUAL_PASS }}
+            run: |
+              cd forCiCD
+              docker-compose pull
+              docker-compose up -d
