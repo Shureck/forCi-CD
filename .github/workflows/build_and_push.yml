@@ -16,10 +16,8 @@ jobs:
       NAME: ${{ secrets.DOCKER_NAME }}
     steps:
       - uses: actions/checkout@v2
-      - name: Test
-        run: echo $LOGIN/$NAME:latest
       - name: Build image
-        run: echo $LOGIN/$NAME:latest
+        run: docker build -t $LOGIN/$NAME:latest ./project
       - name: Docker login
         run: echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
       - name: Push image
