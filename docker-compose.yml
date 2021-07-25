@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+
+  web:
+    build: ./project
+    image: shureck/forci-cd:latest
+    restart: always
+    
+    command: uvicorn main:app --reload --host 0.0.0.0
+
+    volumes:
+        - ./zero_images/:/usr/src/zero_images/
+
+    ports:
+      - 8180:8000
