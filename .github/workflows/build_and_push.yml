@@ -22,8 +22,15 @@ jobs:
 #         run: echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
 #       - name: Push image
 #         run: docker push $LOGIN/$NAME:latest
-      - name: Publish
-        run: |
-          sudo apt-get install sshpass
-          sshpass -p ${{ secrets.VIRTUAL_PASS }} ssh ${{ secrets.VIRTUAL_LOGIN }}@${{ secrets.VIRTUAL_IP }} "mkdir forCiCD"
-        
+#       - name: Publish
+#         run: |
+#           sudo apt-get install sshpass
+#           sshpass -p ${{ secrets.VIRTUAL_PASS }} ssh ${{ secrets.VIRTUAL_LOGIN }}@${{ secrets.VIRTUAL_IP }} "mkdir forCiCD"
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: ${{ secrets.VIRTUAL_IP }}
+          user: ${{ secrets.VIRTUAL_LOGIN }}
+          pass: ${{ secrets.VIRTUAL_PASS }}
+          run: |
+            mkdir forCiCD
