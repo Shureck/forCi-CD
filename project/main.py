@@ -6,4 +6,4 @@ app = FastAPI()
 
 @app.get("/")
 async def getAll():
-    return "all work llooook!"
+    return "all work, yep??"

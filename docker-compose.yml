@@ -4,7 +4,7 @@ services:
 
   web:
     build: ./project
-#    image: shureck/forci-cd:latest
+#    image: shureck/forcicd:latest
     restart: always
     
     command: uvicorn main:app --reload --host 0.0.0.0
