@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build and Push
+
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  build:
+    name: Build and push
+    runs-on: ubuntu-latest
+    env:
+      LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
+      NAME: ${{ secrets.DOCKERHUB_PASS }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build image
+        run: docker build -t $LOGIN/$NAME:latest ./project
+      - name: Docker login
+        run: echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+      - name: Push image
+        run: docker push $LOGIN/$NAME:latest
