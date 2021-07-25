@@ -33,5 +33,6 @@ jobs:
           user: ${{ secrets.VIRTUAL_LOGIN }}
           pass: ${{ secrets.VIRTUAL_PASS }}
           run: |
-            ls
-            mkdir forCiCD
+            cd forCiCD
+            docker-compose down
+            docker-compose up -d
