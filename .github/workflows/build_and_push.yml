@@ -25,6 +25,5 @@ jobs:
       - name: Publish
         run: |
           sudo apt-get install sshpass
-          sshpass -p ${{ secrets.VIRTUAL_PASS }} ssh ${{ secrets.VIRTUAL_LOGIN }}@${{ secrets.VIRTUAL_IP }} -tt
-          mkdir forCiCd
+          sshpass -p ${{ secrets.VIRTUAL_PASS }} ssh ${{ secrets.VIRTUAL_LOGIN }}@${{ secrets.VIRTUAL_IP }} -tt "mkdir forCiCD"
         
