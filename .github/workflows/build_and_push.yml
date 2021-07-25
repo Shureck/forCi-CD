@@ -33,4 +33,5 @@ jobs:
           user: ${{ secrets.VIRTUAL_LOGIN }}
           pass: ${{ secrets.VIRTUAL_PASS }}
           run: |
+            ls
             mkdir forCiCD
