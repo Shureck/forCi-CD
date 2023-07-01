@@ -152,3 +152,4 @@ ENV/
 .ropeproject
 
 zero_images/
+db/

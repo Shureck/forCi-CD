@@ -6,11 +6,20 @@ services:
     build: ./project
 #    image: shureck/forcicd:latest
     restart: always
-    
-    command: uvicorn main:app --reload --host 0.0.0.0
-
-    volumes:
-        - ./zero_images/:/usr/src/zero_images/
-
+    command: uvicorn main:app --host 0.0.0.0
     ports:
       - 8180:8000
+    depends_on:
+      - db
+  db:
+    restart: always
+    image: postgres:11.11
+    # Внешний том(volume) и место где он будет подключен внутри контейнера
+    volumes:
+      - ./db/:/var/lib/postgresql/data/
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=biji
